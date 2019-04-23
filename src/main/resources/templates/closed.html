@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Админ меню</title>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
+    <script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+</head>
+<body>
+
+<main>
+
+    <div class="main_button-wrapper">
+        <div class="logout clearfix">
+            <a href="/logout" class="logout">LogOut</a>
+        </div>
+        <a class="main_button" href="/admin" th:href="@{/admin}">Текущие</a>
+        <a class="main_button" href="/admin/completed" th:href="@{/admin/completed}">Выполненные</a>
+        <a class="main_button" href="/admin/rejected" th:href="@{/admin/rejected}">Отказанные</a>
+    </div>
+
+
+    <div class="main_window">
+        <h4 th:text="${current_title}">Выполненные</h4>
+        <table>
+
+            <tr>
+                <th>номер</th>
+                <th>Пользователь</th>
+                <th>Запрос</th>
+                <th>Ставка</th>
+                <th>Дата</th>
+                <th>Статус</th>
+            </tr>
+            <tr th:each="item : ${list}">
+                <td th:text="${item.id}">1</td>
+                <td th:text="${item.user.name}">user</td>
+                <td th:text="${item.request}">Помыть слона</td>
+                <td th:text="${item.bid}">100.00</td>
+                <td th:text="${item.due_date}">2019-11-02</td>
+                <td th:text="${item.status}">Выполнено</td>
+            </tr>
+
+
+        </table>
+    </div>
+
+</main>
+</body>
+</html>

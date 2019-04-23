@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Главное меню</title>
+    <link href="../static/css/style.css" type="text/css" th:href="@{/css/style.css}" rel="stylesheet"/>
+    <script src="../static/js/jquery-3.3.1.min.js" type="text/javascript" th:src="@{/js/jquery-3.3.1.min.js}" rel="script"></script>
+</head>
+<body>
+
+<main>
+
+    <div class="main_button-wrapper">
+        <div class="logout clearfix">
+            <a href="/logout" class="logout">LogOut</a>
+        </div>
+        <button class="main_button-add" id="addToShop">+</button>
+        <button class="main_button active" id="shop">Мои запросы</button>
+    </div>
+
+
+    <div class="main_window">
+
+        <table>
+            <tr>
+                <th>номер</th>
+                <th>Запрос</th>
+                <th>Ставка</th>
+                <th>Дата</th>
+                <th>Статус</th>
+            </tr>
+            <tr th:each="item : ${list}">
+                <td th:text="${item.id}">1</td>
+                <td th:text="${item.request}">Помыть слона</td>
+                <td th:text="${item.bid}">100.00</td>
+                <td th:text="${item.due_date}">2019-11-02</td>
+                <td th:text="${item.status}">Принято</td>
+            </tr>
+
+        </table>
+    </div>
+</main>
+<div class="forms" id="add">
+    <form class="decor" id="addForm" th:object="${newOrder}" action="#" th:action="@{/user}" method="post">
+        <div class="form-inner">
+            <h3 class="close">X</h3>
+            <h3>Добавить новый запрос:</h3>
+            <h4>Запрос:</h4>
+            <input id="request" name='request' type="text" placeholder="запрос"><br/>
+            <h4>Ставка:</h4>
+            <input name="bid" type="text" placeholder="100.00"  pattern="^[\d]{1,8}([.|,]\d{1,2})?$"><br/>
+            <h4>Дата:</h4>
+            <input name="due_date" type="date" ><br/>
+            <input type="submit" value="Зарегистрировать"  tabindex="6">
+        </div>
+    </form>
+</div>
+
+
+
+<div class="loader">
+    <div class="load-wrapp">
+        <div class="load-4">
+            <div class="ring-1"></div>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+
+<div class="message">
+    <p>Запись успешно добавлена с №12</p>
+</div>
+
+
+
+
+
+<script src="../static/js/main.js" type="text/javascript" th:src="@{/js/main.js}" rel="script"></script>
+</body>
+</html>
